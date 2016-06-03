@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+vector<int> tree;
+
+void add()
+{
+	int i, element;
+	cin >> element;
+	if (tree.size() == 0)
+		tree.insert(tree.begin(), element);
+	else
+	{
+		for (i = 0; i < tree.size(); i++)
+			if (element <= tree[i])
+			{
+				tree.insert(tree.begin() + i, element);
+				break;
+			}
+		if (i == tree.size())
+			tree.push_back(element);
+	}
+}
+
+int main()
+{
+	string str;
+	int n;
+	cin >> n;
+
+	while (n)
+	{
+		getline(cin, str);
+		if (str == "add")
+		{
+			n--;
+			add();
+		}
+		if (str == "get")
+		{
+			n--;
+			cout << tree[0] << endl;
+		}
+		if (str == "del")
+		{
+			n--;
+			tree.erase(tree.begin());
+		}
+	}
+
+	system("pause");
+	return 0;
+}
